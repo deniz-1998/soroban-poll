@@ -29,11 +29,11 @@ fn test_cast_vote_success() {
     client.create_poll(&question, &options);
 
     let voter = symbol_short!("voter1");
-    let result = client.cast_vote(&voter, &0);
-    assert!(result.is_ok());
+    client.cast_vote(&voter, &0);
 }
 
 #[test]
+#[should_panic(expected = "Invalid option index")]
 fn test_cast_vote_invalid_option_error() {
     let env = Env::default();
     let contract_id = env.register_contract(None, SorobanPollContract);
@@ -46,7 +46,5 @@ fn test_cast_vote_invalid_option_error() {
     client.create_poll(&question, &options);
 
     let voter = symbol_short!("voter1");
-    let result = client.cast_vote(&voter, &5); // 5 is an invalid index
-    
-    assert!(result.is_err());
+    client.cast_vote(&voter, &5); // 5 is invalid, should panic successfully
 }
