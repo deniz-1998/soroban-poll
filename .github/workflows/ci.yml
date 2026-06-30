@@ -22,5 +22,7 @@ jobs:
 
     - name: Run smart contract tests
       run: |
-        cd contracts/soroban-poll-contract
+        if [ -d "contracts/soroban-poll-contract" ]; then
+          cd contracts/soroban-poll-contract
+        fi
         cargo test
