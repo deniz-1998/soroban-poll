@@ -1,49 +1,44 @@
 #![no_std]
-use soroban_sdk::{contract, contractimpl, Env, Symbol, String, Vec, map, Map};
+use soroban_sdk::{contract, contractimpl, contracttype, symbol_short, Env, Symbol, Vec};
+
+#[contracttype]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum PollError {
+    InvalidOption = 1,
+}
 
 #[contract]
-pub struct LivePollContract;
+pub struct SorobanPollContract;
 
 #[contractimpl]
-impl LivePollContract {
-    // Initializes the poll with a question and a list of options
-    pub fn init_poll(env: Env, question: String, options: Vec<String>) {
-        env.storage().instance().set(&Symbol::new(&env, "question"), &question);
-        env.storage().instance().set(&Symbol::new(&env, "options"), &options);
+impl SorobanPollContract {
+    // Anket başlatma fonksiyonu
+    pub fn create_poll(env: Env, question: Symbol, options: Vec<Symbol>) {
+        env.storage().instance().set(&symbol_short!("question"), &question);
+        env.storage().instance().set(&symbol_short!("options"), &options);
         
-        let mut votes_map: Map<String, u32> = map![&env];
-        for i in 0..options.len() {
-            if let Some(opt) = options.get(i) {
-                votes_map.set(opt, 0);
-            }
-        }
-        env.storage().instance().set(&Symbol::new(&env, "votes"), &votes_map);
+        // Event: Anket oluşturuldu bildirimini fırlatır
+        env.events().publish((symbol_short!("poll"), symbol_short!("created")), question);
     }
 
-    // Casts a vote for a specific option and increments its count
-    pub fn vote(env: Env, selected_option: String) -> Map<String, u32> {
-        let votes_key = Symbol::new(&env, "votes");
-        let mut votes_map: Map<String, u32> = env.storage().instance().get(&votes_key).unwrap_or(map![&env]);
-        
-        if votes_map.contains_key(selected_option.clone()) {
-            let current_votes = votes_map.get(selected_option.clone()).unwrap();
-            let new_votes = current_votes + 1;
-            votes_map.set(selected_option.clone(), new_votes);
-            env.storage().instance().set(&votes_key, &votes_map);
-            
-            // Real-time event publishing required for Level 2
-            env.events().publish(
-                (Symbol::new(&env, "POLL_UPDATED"), selected_option),
-                new_votes
-            );
+    // Oy kullanma fonksiyonu (Advanced Logic + Real-time Event)
+    pub fn cast_vote(env: Env, voter: Symbol, option_index: u32) -> Result<(), PollError> {
+        let options: Vec<Symbol> = env.storage().instance().get(&symbol_short!("options")).unwrap();
+        if option_index >= options.len() {
+            return Err(PollError::InvalidOption);
         }
-        
-        votes_map
-    }
 
-    // Retrieves the current state and results of the live poll
-    pub fn get_results(env: Env) -> Map<String, u32> {
-        let votes_key = Symbol::new(&env, "votes");
-        env.storage().instance().get(&votes_key).unwrap_or(map![&env])
+        let vote_key = (symbol_short!("vote"), option_index);
+        let mut current_votes: u32 = env.storage().instance().get(&vote_key).unwrap_or(0);
+        current_votes += 1;
+        env.storage().instance().set(&vote_key, &current_votes);
+
+        // KRİTİK: Videoda istenen gerçek zamanlı Event fırlatma yapısı
+        env.events().publish(
+            (symbol_short!("poll"), symbol_short!("voted")),
+            (voter, option_index, current_votes)
+        );
+
+        Ok(())
     }
 }
