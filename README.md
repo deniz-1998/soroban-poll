@@ -7,7 +7,7 @@ A production-ready, end-to-end decentralized voting application built on the Ste
 ##  Submission Links & Details
 
 - **Live Demo Link:** [https://soroban-poll-demo.vercel.app](https://soroban-poll-demo.vercel.app) *(Deploy your frontend to Vercel/Netlify and update this link)*
-- **Demo Video Link:** [https://youtube.com/watch?example](https://youtube.com/watch?example) *(Add your 1-2 min demo video link here)*
+- **Demo Video Link:** (https://youtu.be/QX6GqxaBPx0)
 - **Contract Deployment Address:** `CC...STELLAR...CONTRACT...ADDRESS...` *(Update with your deployed Testnet contract ID)*
 - **Transaction Hash:** `0x...TRANSACTION...HASH...` *(Update with your transaction hash)*
 
