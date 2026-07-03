@@ -18,6 +18,12 @@ A production-ready, end-to-end decentralized voting application built on the Ste
 * **Advanced Smart Contract Logic:** Built with Rust and Soroban SDK, featuring structured error handling via `PollError` enums.
 * **Event Streaming & Real-Time Updates:** Emits real-time cryptographic events (`poll created` and `poll voted`) using `env.events().publish()` for frontend indexing.
 * **Automated CI/CD Pipeline:** Fully configured GitHub Actions workflow (`ci.yml`) to automatically trigger on pushes, pulling down the stable Rust toolchain and verifying contract integrity via `cargo test`.
+<img width="1411" height="606" alt="Ekran Resmi 2026-06-30 14 19 15" src="https://github.com/user-attachments/assets/2dcaef5e-57e1-4347-874f-25ecb2432a8a" />
+<img width="1411" height="606" alt="Ekran Resmi 2026-06-30 14 20 13" src="https://github.com/user-attachments/assets/6fd4c924-7866-4bb3-9513-93089dfc10ef" />
+<img width="1430" height="775" alt="Ekran Resmi 2026-06-30 14 23 51" src="https://github.com/user-attachments/assets/3217ab5d-631a-4978-9e13-ff29455d205a" />
+
+
+
 * **Mobile Responsive Frontend:** Integrated with Tailwind CSS and Stellar Freighter API for seamless Web3 wallet connections across all viewports.
 * **Robust Test Suite:** Features 3+ passing unit tests covering edge cases, invalid options, and successful state mutations.
 
