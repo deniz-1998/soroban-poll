@@ -8,8 +8,8 @@ A production-ready, end-to-end decentralized voting application built on the Ste
 
 -- **Live Demo Link:** https://sorosim-ai.vercel.app
 - **Demo Video Link:** https://youtu.be/QX6GqxaBPx0
-- **Contract Deployment Address:** `CC...STELLAR...CONTRACT...ADDRESS...` *(Update with your deployed Testnet contract ID)*
-- **Transaction Hash:** `0x...TRANSACTION...HASH...` *(Update with your transaction hash)*
+- **Contract Deployment Address:** `CDTHKA53AIM2IB7QN5MIUOUC5RN73KB4Y6JR42XAWCEDY4ZAK3UNZ3FK`
+- **WASM Hash / Transaction Ref:** `2dbaa1e058e57827dbd80df3751794b6ca674ba0b51048f07be8c0d171ed4be4`
 
 ---
 
