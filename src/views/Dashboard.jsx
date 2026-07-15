@@ -115,24 +115,25 @@ export default function Dashboard() {
 
         {/* Right Status & Logs */}
         <div className="lg:col-span-7 flex flex-col space-y-4 min-h-0 h-full">
-          <div className="grid grid-cols-3 gap-3 flex-shrink-0">
-            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-3 min-w-0">
-              <span className="block text-[9px] text-gray-400 font-semibold uppercase tracking-wider mb-1 truncate">Security Audit</span>
-              <span className={`text-xs md:text-sm font-bold truncate block ${auditStatus === 'SECURE' ? 'text-emerald-400' : auditStatus === 'ANALYZING' ? 'text-blue-400 animate-pulse' : 'text-amber-500'}`}>
+          {/* Status Metrics Cards - Geliştirilmiş ve sıkışmayı önleyen esnek yapı */}
+          <div className="grid grid-cols-3 gap-2.5 flex-shrink-0">
+            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
+              <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Security Audit</span>
+              <span className={`text-[10px] sm:text-xs font-black block tracking-tight ${auditStatus === 'SECURE' ? 'text-emerald-400' : auditStatus === 'ANALYZING' ? 'text-blue-400 animate-pulse' : 'text-amber-500'}`}>
                 {auditStatus}
               </span>
             </div>
-            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-3 min-w-0">
-              <span className="block text-[9px] text-gray-400 font-semibold uppercase tracking-wider mb-1 truncate">Est. Gas (XLM)</span>
-              <span className="text-xs md:text-sm font-bold text-gray-200 truncate block">{gasEstimated}</span>
+            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
+              <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Est. Gas (XLM)</span>
+              <span className="text-[10px] sm:text-xs font-black text-gray-200 block tracking-tight">{gasEstimated}</span>
             </div>
-            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-3 min-w-0">
-              <span className="block text-[9px] text-gray-400 font-semibold uppercase tracking-wider mb-1 truncate">Balance</span>
-              <span className="text-xs md:text-sm font-bold text-indigo-400 truncate block">{balance} XLM</span>
+            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
+              <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Balance</span>
+              <span className="text-[10px] sm:text-xs font-black text-indigo-400 block tracking-tight">{balance} XLM</span>
             </div>
           </div>
           
-          {/* Terminal Box - Artık tüm dikey boşluğu dolduracak şekilde ayarlandı (flex-grow) */}
+          {/* Terminal Box */}
           <div className="flex-grow bg-[#090D16] border border-[#1F2937] rounded-xl p-4 font-mono text-xs flex flex-col min-h-0">
             <div className="flex justify-between items-center pb-2 border-b border-[#1F2937] mb-3 flex-shrink-0">
               <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Agent Terminal</span>
