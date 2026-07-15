@@ -47,9 +47,9 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col text-gray-100 font-sans">
+    <div className="w-full h-full flex flex-col text-gray-100 font-sans overflow-hidden">
       {/* Header */}
-      <header className="flex justify-between items-center pb-4 border-b border-[#1F2937] mb-6 flex-shrink-0">
+      <header className="flex justify-between items-center pb-3 border-b border-[#1F2937] mb-6 flex-shrink-0">
         <div className="flex items-center space-x-2 min-w-0">
           <div className="w-3.5 h-3.5 bg-indigo-500 rounded-full animate-pulse flex-shrink-0"></div>
           <span className="text-lg md:text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 truncate">
@@ -65,10 +65,10 @@ export default function Dashboard() {
       </header>
 
       {/* Content Area */}
-      <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch min-h-0">
+      <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch min-h-0 overflow-hidden">
         
-        {/* Left Inputs - pb-7 ekleyerek butonun altına boşluk bıraktık */}
-        <div className="lg:col-span-5 bg-[#1F2937]/30 border border-[#1F2937] rounded-2xl p-5 pb-7 flex flex-col justify-between min-h-0">
+        {/* Left Inputs */}
+        <div className="lg:col-span-5 bg-[#1F2937]/30 border border-[#1F2937] rounded-2xl p-5 flex flex-col justify-between min-h-0 overflow-hidden">
           <div className="space-y-4">
             <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Simulation Controls</h2>
             <div className="space-y-4">
@@ -107,33 +107,46 @@ export default function Dashboard() {
           <button
             onClick={runSimulation}
             disabled={isSimulating}
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl py-3 font-semibold text-xs transition-all duration-200 shadow-lg mt-6"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl py-3 font-semibold text-xs transition-all duration-200 shadow-lg mt-6 flex-shrink-0"
           >
             {isSimulating ? "Simulating..." : "Run AI Simulation"}
           </button>
         </div>
 
         {/* Right Status & Logs */}
-        <div className="lg:col-span-7 flex flex-col space-y-4 min-h-0 h-full">
-          <div className="grid grid-cols-3 gap-2.5 flex-shrink-0">
-            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
-              <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Security Audit</span>
-              <span className={`text-[10px] sm:text-xs font-black block tracking-tight ${auditStatus === 'SECURE' ? 'text-emerald-400' : auditStatus === 'ANALYZING' ? 'text-blue-400 animate-pulse' : 'text-amber-500'}`}>
+        <div className="lg:col-span-7 flex flex-col space-y-5 min-h-0 h-full overflow-hidden">
+          
+          {/* Status Metrics Area - Dikey, sıkışmayan ve taşma imkanı sıfır olan liste yapısı */}
+          <div className="bg-[#1F2937]/20 border border-[#1F2937] rounded-2xl p-4 space-y-3 flex-shrink-0">
+            
+            {/* Row 1: Security Audit */}
+            <div className="flex justify-between items-center py-1.5 border-b border-[#1F2937]/60">
+              <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Security Audit Status</span>
+              <span className={`text-xs font-black tracking-widest px-2.5 py-1 rounded bg-[#1F2937]/40 ${auditStatus === 'SECURE' ? 'text-emerald-400' : auditStatus === 'ANALYZING' ? 'text-blue-400 animate-pulse' : 'text-amber-500'}`}>
                 {auditStatus}
               </span>
             </div>
-            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
-              <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Est. Gas (XLM)</span>
-              <span className="text-[10px] sm:text-xs font-black text-gray-200 block tracking-tight">{gasEstimated}</span>
+
+            {/* Row 2: Est. Gas */}
+            <div className="flex justify-between items-center py-1.5 border-b border-[#1F2937]/60">
+              <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Est. Gas (XLM)</span>
+              <span className="text-xs font-mono font-bold text-gray-200 bg-[#1F2937]/40 px-2.5 py-1 rounded">
+                {gasEstimated}
+              </span>
             </div>
-            <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
-              <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Balance</span>
-              <span className="text-[10px] sm:text-xs font-black text-indigo-400 block tracking-tight">{balance} XLM</span>
+
+            {/* Row 3: Wallet Balance */}
+            <div className="flex justify-between items-center py-1.5">
+              <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Active Wallet Balance</span>
+              <span className="text-xs font-bold text-indigo-400 bg-indigo-950/20 px-2.5 py-1 rounded">
+                {balance} XLM
+              </span>
             </div>
+
           </div>
           
           {/* Terminal Box */}
-          <div className="flex-grow bg-[#090D16] border border-[#1F2937] rounded-xl p-4 font-mono text-xs flex flex-col min-h-0">
+          <div className="flex-grow bg-[#090D16] border border-[#1F2937] rounded-xl p-4 font-mono text-xs flex flex-col min-h-0 overflow-hidden">
             <div className="flex justify-between items-center pb-2 border-b border-[#1F2937] mb-3 flex-shrink-0">
               <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Agent Terminal</span>
               <div className="flex space-x-1">
