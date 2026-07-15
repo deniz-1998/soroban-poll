@@ -67,8 +67,8 @@ export default function Dashboard() {
       {/* Content Area */}
       <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch min-h-0">
         
-        {/* Left Inputs */}
-        <div className="lg:col-span-5 bg-[#1F2937]/30 border border-[#1F2937] rounded-2xl p-5 flex flex-col justify-between min-h-0">
+        {/* Left Inputs - pb-7 ekleyerek butonun altına boşluk bıraktık */}
+        <div className="lg:col-span-5 bg-[#1F2937]/30 border border-[#1F2937] rounded-2xl p-5 pb-7 flex flex-col justify-between min-h-0">
           <div className="space-y-4">
             <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Simulation Controls</h2>
             <div className="space-y-4">
@@ -115,7 +115,6 @@ export default function Dashboard() {
 
         {/* Right Status & Logs */}
         <div className="lg:col-span-7 flex flex-col space-y-4 min-h-0 h-full">
-          {/* Status Metrics Cards - Geliştirilmiş ve sıkışmayı önleyen esnek yapı */}
           <div className="grid grid-cols-3 gap-2.5 flex-shrink-0">
             <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-2.5 min-w-0 flex flex-col justify-center">
               <span className="block text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-1 whitespace-nowrap">Security Audit</span>
