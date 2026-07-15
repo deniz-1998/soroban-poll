@@ -47,9 +47,9 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between text-gray-100 font-sans">
+    <div className="w-full h-full flex flex-col text-gray-100 font-sans">
       {/* Header */}
-      <header className="flex justify-between items-center pb-4 border-b border-[#1F2937] mb-8">
+      <header className="flex justify-between items-center pb-4 border-b border-[#1F2937] mb-6 flex-shrink-0">
         <div className="flex items-center space-x-2 min-w-0">
           <div className="w-3.5 h-3.5 bg-indigo-500 rounded-full animate-pulse flex-shrink-0"></div>
           <span className="text-lg md:text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 truncate">
@@ -65,11 +65,12 @@ export default function Dashboard() {
       </header>
 
       {/* Content Area */}
-      <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch min-h-0">
+        
         {/* Left Inputs */}
-        <div className="lg:col-span-5 bg-[#1F2937]/30 border border-[#1F2937] rounded-2xl p-5 flex flex-col justify-between min-w-0 min-h-[300px]">
+        <div className="lg:col-span-5 bg-[#1F2937]/30 border border-[#1F2937] rounded-2xl p-5 flex flex-col justify-between min-h-0">
           <div className="space-y-4">
-            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Simulation Controls</h2>
+            <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Simulation Controls</h2>
             <div className="space-y-4">
               <div>
                 <label className="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Contract Address</label>
@@ -113,8 +114,8 @@ export default function Dashboard() {
         </div>
 
         {/* Right Status & Logs */}
-        <div className="lg:col-span-7 flex flex-col space-y-4 min-w-0">
-          <div className="grid grid-cols-3 gap-3">
+        <div className="lg:col-span-7 flex flex-col space-y-4 min-h-0 h-full">
+          <div className="grid grid-cols-3 gap-3 flex-shrink-0">
             <div className="bg-[#1F2937]/30 border border-[#1F2937] rounded-xl p-3 min-w-0">
               <span className="block text-[9px] text-gray-400 font-semibold uppercase tracking-wider mb-1 truncate">Security Audit</span>
               <span className={`text-xs md:text-sm font-bold truncate block ${auditStatus === 'SECURE' ? 'text-emerald-400' : auditStatus === 'ANALYZING' ? 'text-blue-400 animate-pulse' : 'text-amber-500'}`}>
@@ -130,7 +131,9 @@ export default function Dashboard() {
               <span className="text-xs md:text-sm font-bold text-indigo-400 truncate block">{balance} XLM</span>
             </div>
           </div>
-          <div className="flex-grow bg-[#090D16] border border-[#1F2937] rounded-xl p-4 font-mono text-xs flex flex-col min-h-[220px]">
+          
+          {/* Terminal Box - Artık tüm dikey boşluğu dolduracak şekilde ayarlandı (flex-grow) */}
+          <div className="flex-grow bg-[#090D16] border border-[#1F2937] rounded-xl p-4 font-mono text-xs flex flex-col min-h-0">
             <div className="flex justify-between items-center pb-2 border-b border-[#1F2937] mb-3 flex-shrink-0">
               <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Agent Terminal</span>
               <div className="flex space-x-1">
@@ -144,6 +147,7 @@ export default function Dashboard() {
             </pre>
           </div>
         </div>
+
       </div>
     </div>
   );

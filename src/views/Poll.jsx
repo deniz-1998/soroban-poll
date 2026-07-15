@@ -48,7 +48,7 @@ export default function Poll() {
   return (
     <div className="w-full h-full flex flex-col justify-between text-white font-sans">
       {/* Header */}
-      <div className="w-full flex justify-between items-center pb-4 border-b border-[#1F2937] mb-8">
+      <div className="w-full flex justify-between items-center pb-4 border-b border-[#1F2937] mb-6 flex-shrink-0">
         <div className="flex items-center space-x-2">
           <div className="w-3.5 h-3.5 bg-emerald-500 rounded-full animate-pulse"></div>
           <h1 className="text-lg md:text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">
@@ -63,29 +63,29 @@ export default function Poll() {
         </button>
       </div>
 
-      {/* Main Content Card */}
-      <div className="flex-grow flex flex-col justify-center min-h-[350px]">
-        <h2 className="text-base md:text-lg font-semibold mb-2 text-center">Do you support the new Soroban Smart Contract Upgrade?</h2>
+      {/* Main Content Card - Esnek dikey büyüme */}
+      <div className="flex-grow flex flex-col justify-center min-h-0 py-6">
+        <h2 className="text-base md:text-xl font-semibold mb-3 text-center">Do you support the new Soroban Smart Contract Upgrade?</h2>
         <p className="text-gray-400 text-xs text-center mb-8">Active Poll | Target Contract: <code className="bg-[#1F2937] px-2 py-1 rounded text-[10px]">{CONTRACT_ADDRESS.substring(0, 15)}...</code></p>
 
         {/* Voting Options */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-6 mb-8 max-w-xl mx-auto w-full">
           <button
             disabled={!isConnected || loading}
             onClick={() => castVote("Yes")}
-            className="bg-[#1E293B] hover:bg-emerald-950/20 border border-[#334155] hover:border-emerald-500/40 p-4 rounded-xl transition-all duration-300 disabled:opacity-40"
+            className="bg-[#1E293B] hover:bg-emerald-950/20 border border-[#334155] hover:border-emerald-500/40 p-6 rounded-2xl transition-all duration-300 disabled:opacity-40"
           >
-            <span className="block text-xl font-bold mb-1 text-emerald-400">YES</span>
-            <span className="text-gray-400 text-[11px]">Total: {votes.Yes} votes</span>
+            <span className="block text-2xl font-bold mb-1 text-emerald-400">YES</span>
+            <span className="text-gray-400 text-xs">Total: {votes.Yes} votes</span>
           </button>
 
           <button
             disabled={!isConnected || loading}
             onClick={() => castVote("No")}
-            className="bg-[#1E293B] hover:bg-rose-950/20 border border-[#334155] hover:border-rose-500/40 p-4 rounded-xl transition-all duration-300 disabled:opacity-40"
+            className="bg-[#1E293B] hover:bg-rose-950/20 border border-[#334155] hover:border-rose-500/40 p-6 rounded-2xl transition-all duration-300 disabled:opacity-40"
           >
-            <span className="block text-xl font-bold mb-1 text-rose-400">NO</span>
-            <span className="text-gray-400 text-[11px]">Total: {votes.No} votes</span>
+            <span className="block text-2xl font-bold mb-1 text-rose-400">NO</span>
+            <span className="text-gray-400 text-xs">Total: {votes.No} votes</span>
           </button>
         </div>
 
@@ -97,7 +97,7 @@ export default function Poll() {
         )}
 
         {txHash && (
-          <div className="bg-[#1E293B]/50 border border-[#334155] rounded-lg p-3 mb-4 text-[10px] text-center">
+          <div className="bg-[#1E293B]/50 border border-[#334155] rounded-lg p-3 mb-4 text-[10px] text-center max-w-xl mx-auto w-full">
             <span className="text-emerald-400 font-semibold">Success!</span> Transaction Hash: <br />
             <a 
               href={`https://stellar.expert/explorer/testnet/tx/${txHash}`} 
@@ -111,7 +111,7 @@ export default function Poll() {
         )}
 
         {!isConnected && (
-          <div className="bg-amber-950/10 border border-amber-500/20 text-amber-400 text-[11px] rounded-lg p-3 text-center">
+          <div className="bg-amber-950/10 border border-amber-500/20 text-amber-400 text-xs rounded-xl p-4 text-center max-w-xl mx-auto w-full">
             ⚠️ Please connect your Freighter wallet to participate.
           </div>
         )}
