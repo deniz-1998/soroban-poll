@@ -4,26 +4,20 @@ import Poll from './views/Poll';
 
 function App() {
   return (
-    <div className="bg-[#0B0F19] min-h-screen">
-      {/* 1. EKRAN: SoroSim AI Workspace */}
-      <div className="border-b border-[#1F2937] pb-12">
-        <Dashboard />
-      </div>
-
-      {/* Görsel bir ayırıcı çizgi ve başlık */}
-      <div className="max-w-7xl mx-auto px-6 my-12">
-        <div className="relative flex py-5 items-center">
-          <div className="flex-grow border-t border-dashed border-[#1F2937]"></div>
-          <span className="flex-shrink mx-4 text-xs font-semibold text-gray-500 uppercase tracking-widest bg-[#0B0F19] px-4 py-1 border border-[#1F2937] rounded-full">
-            Live Voting Integration Area
-          </span>
-          <div className="flex-grow border-t border-dashed border-[#1F2937]"></div>
+    <div className="bg-[#0B0F19] min-h-screen w-full p-4 md:p-8">
+      {/* 2 Sütunlu Yan Yana Düzen (Masaüstünde yan yana, mobilde alt alta) */}
+      <div className="max-w-[1700px] mx-auto grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+        
+        {/* Sol Sütun: SoroSim AI Workspace */}
+        <div className="bg-[#0F172A]/40 border border-[#1F2937] rounded-3xl p-2 shadow-2xl">
+          <Dashboard />
         </div>
-      </div>
 
-      {/* 2. EKRAN: Soroban Poll dApp */}
-      <div className="pb-16">
-        <Poll />
+        {/* Sağ Sütun: Soroban Poll dApp */}
+        <div className="bg-[#0F172A]/40 border border-[#1F2937] rounded-3xl p-2 shadow-2xl">
+          <Poll />
+        </div>
+
       </div>
     </div>
   );
